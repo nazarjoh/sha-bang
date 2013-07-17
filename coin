@@ -1,0 +1,39 @@
+#!/bin/bash
+
+declare -i count=0
+
+func ()
+{
+file=/tmp/rand
+yes=/tmp/YES
+no=/tmp/NO
+
+for i in $(seq 1 4)
+do
+	echo "$RANDOM" >>$file
+done	
+
+a=$(expr $(sed -n 1p $file) \+ $(sed -n 3p $file))
+b=$(expr $(sed -n 2p $file) \+ $(sed -n 4p $file))
+
+if [ $a -gt $b ] 
+	then echo "Yes" >>$yes
+elif [ $a -lt $b ]
+	then echo "No"	>>$no
+else exit 1
+fi
+
+rm -f $file 2>&-
+
+}
+
+for i in $(seq 1 15000)
+do func; echo $count; let "count += 1"
+done
+
+wc -l $yes; echo; wc -l $no
+
+rm -f $yes $no 2>&-
+
+exit 0
+

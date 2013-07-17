@@ -1,0 +1,25 @@
+#!/bin/bash
+
+funk ()
+	{
+ping -c1 -w1 $1 >&- 2>&- && touch /tmp/success.$1
+	}
+
+for i in $(seq 65 126); do
+funk 37.9.64.$i
+done;
+
+wait
+
+broken=$(ls -l /tmp/success*| wc -l)
+
+
+#done|sort -nt. -k4,4
+
+
+if [ $broken -ge 5 ] 
+then echo "Day is still continues, cause $broken employees are at work"
+else echo "Lets go home, cause less than $broken employees are at work now"
+fi
+
+rm -f /tmp/success.* 2>&-

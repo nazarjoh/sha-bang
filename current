@@ -1,0 +1,5 @@
+#!/bin/bash
+
+var="ping -c 4 ya.ru"
+
+eval $var

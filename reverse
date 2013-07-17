@@ -1,0 +1,24 @@
+#!/bin/bash
+
+i=1
+file=/tmp/testing
+
+while [ $i -eq 1 ]
+do
+	read d; echo $d >> $file; i=$(grep -q -e"#" $file; echo $?)
+done
+
+sed -i 's/#//' $file
+
+echo -e "\n"
+echo "Type completed. Let some magic happen"
+echo -e "\n"
+
+lines=$(wc -l $file| cut -d" " -f1)
+
+while [ $lines -gt 0 ]
+do
+	sed -n ${lines}p $file; lines=$(expr $lines \- 1)
+done
+
+rm -f $file 2>&-

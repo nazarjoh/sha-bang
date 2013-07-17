@@ -1,0 +1,21 @@
+#!/bin/bash
+
+array[0]=$((RANDOM%10))
+
+i=1
+
+until [ ${#array[@]} -eq 10 ]; do
+
+num=$((RANDOM%10))
+
+	if [[ ! $(echo ${array[@]} | grep $num) ]]
+	then array[i]=$num; let "i+=1"
+	fi
+
+
+done
+
+
+echo ${array[@]}
+
+exit 0
