@@ -1,0 +1,40 @@
+#!/bin/bash
+
+declare -a eng=(rankles button notch perk batch snatch spread stomp prescription snap yell supplicant queue insane dapper favor grateful toasted reassure glow glory honored majesty modesty adore tingle charm schedule deck swing ply assume thrill enormous flimsy creep surgery)
+
+declare -a rus=(терзания пуговица выемка_сбор воспрять_духом кипа урвать расширить_распространить топать рецепт_предписание огрызаться вопль проситель очередь безумный щеголь благосклонность благодарность поджаривать успокоить свечение слава почетный величие скромность обожать покалывать шарм расписание палуба_настил качаться покрывать_слоем предполагать трепет огромный хлипкий ползать хирургия)
+
+clear; 	echo "English vocabulary spreading program"
+	echo "press E if you want to see words in English or press R if you prefer Russian this time"
+	echo; echo "If you want to stop the program just press any digit button" 	
+
+read lang
+
+ecount=${#eng[@]}
+
+rcount=${#rus[@]}
+
+
+english (){
+	go=c
+	while [[ $go -eq c ]] || exit; do
+	clear; echo "${eng[$((RANDOM%ecount))]}"; read -s go
+	done;
+}
+
+
+russian (){
+	go=c
+	while [[ $go -eq c ]] || exit; do
+	clear; echo "${rus[$((RANDOM%rcount))]}"; read -s go
+	done;
+}
+
+
+case $lang in
+	e|E) english ;;
+	r|R) russian ;;
+	*)  exit ;;
+esac
+
+exit 0
