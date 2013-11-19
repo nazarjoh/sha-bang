@@ -1,132 +1,8 @@
 #!/bin/bash
 
-declare -a eng=(rankles
-button
-notch
-perk
-batch
-snatch
-spread
-stomp
-prescription
-snap
-yell
-supplicant
-queue
-insane
-dapper
-favor
-grateful
-toasted
-reassure
-glow
-glory
-honored
-majesty
-modesty
-adore
-tingle
-charm
-schedule
-deck
-swing
-ply
-assume
-thrill
-enormous
-flimsy
-creep
-surgery
-forthcoming
-sterling
-mention
-contender
-blush
-lease
-nutrition
-wig
-poke
-stove
-anxious
-heir_heiress
-descendant
-conjunction
-conjecture
-settle
-rein
-among
-aware
-spike
-vow
-devastation
-contemporary
-potent
-gist
-)
+declare -a eng=($(cut -f1 ./dict))
 
-declare -a rus=(терзания
-пуговица
-выемка_сбор
-воспрять_духом
-кипа
-урвать
-расширить_распространить
-топать
-рецепт_предписание
-огрызаться
-вопль
-проситель
-очередь
-безумный
-щеголь
-благосклонность
-благодарность
-поджаривать
-успокоить
-свечение
-слава
-почетный
-величие
-скромность
-обожать
-покалывать
-шарм
-расписание
-палуба_настил
-качаться
-покрывать_слоем
-предполагать
-трепет
-огромный
-хлипкий
-ползать
-хирургия
-предстоящий
-надежный
-упомянуть
-соперник
-краснеть
-аренда
-питание
-парик
-тыкать
-плита
-тревожный
-наследник_наследница
-потомок
-соединение_догор
-предположение
-урегулировать
-вожжи
-среди
-знающий
-шип
-клясться
-опустошение
-современный
-мощный
-суть
-)
+declare -a rus=($(cut -f3 ./dict))
 
 clear; 	echo "English vocabulary spreading program"
 	echo "press E if you want to see words in English or press R if you prefer Russian this time"
@@ -142,15 +18,16 @@ rcount=${#rus[@]}
 english (){
 	go=c
 	while [[ $go -eq c ]] || exit; do
-	clear; echo "${eng[$((RANDOM%ecount))]}"; read -s go
+	rand=$((RANDOM%ecount))
+	clear; echo -ne "${eng[$rand]}\t"; sleep 5s; echo "${rus[$rand]}"; read -s go
 	done;
 }
-
 
 russian (){
 	go=c
 	while [[ $go -eq c ]] || exit; do
-	clear; echo "${rus[$((RANDOM%rcount))]}"; read -s go
+	rand=$((RANDOM%rcount))
+	clear; echo -ne "${rus[$rand]}\t"; sleep 5s; echo "${eng[$rand]}"; read -s go
 	done;
 }
 
