@@ -1,0 +1,42 @@
+#!/bin/bash
+
+file=/tmp/rtt
+sum=0
+
+echo "What domain name you want to reach?"
+read dom
+
+enterpack () {
+echo "How many packets you want to send? Range is from 5 up to 50?"
+read packs 
+}
+
+enterpack 
+
+until [ $packs -ge 5 -a $packs -le 50 -o -z $packs ]
+do
+	echo "Enter the value between 5 and 50, please."
+	packs=0; enterpack
+done
+
+ping -n -c $packs $dom 	|
+cut -d " " -f 7		|
+cut -d "=" -f 2		|
+cut -d "." -f 1		|
+sed 's/.*loss.*//'	|
+sed '/^$/d'		> $file
+
+count=$(wc -l $file | cut -d " " -f 1)
+count2=$(echo $count)
+
+for i in $(seq 1 $count)
+do	
+	let "sum += $(sed -n ${count}p $file)"
+	count=$(expr $count \- 1)
+done
+
+echo "The average RTT time to $dom is $(expr $sum \/ $count2)ms after ${packs} packages sent"
+
+rm -f $file 1>&2 >&-
+
+exit 0

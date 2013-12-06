@@ -1,0 +1,33 @@
+#!/bin/bash
+
+echo "Who is lucky?"
+sleep 2
+echo "A-ha, lets see who will be chosen"
+sleep 1
+echo "My god..."
+echo
+sleep 3
+
+animals="Kotik
+Lisichka
+Medvezhonok
+Petushok
+Mishonok
+Zaychik
+Ezhik
+Sovenok
+Pesik
+Obezyanka
+Popugaychik
+Krotik
+Porosenok
+Olenenok"
+
+zveri=($animals)
+
+
+aniquant=${#zveri[@]}
+
+echo -e "\\t>>>>>>------${zveri[$((RANDOM%aniquant))]} has won ___THE MILLION!!!!!___------<<<<<<"
+
+exit 0

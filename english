@@ -1,0 +1,41 @@
+#!/bin/bash
+
+declare -a eng=($(cut -f1 ./dict))
+
+declare -a rus=($(cut -f3 ./dict))
+
+clear; 	echo "English vocabulary spreading program"
+	echo "press E if you want to see words in English or press R if you prefer Russian this time"
+	echo; echo "If you want to stop the program just press any digit button" 	
+
+read lang
+
+ecount=${#eng[@]}
+
+rcount=${#rus[@]}
+
+
+english (){
+	go=c
+	while [[ $go -eq c ]] || exit; do
+	rand=$((RANDOM%ecount))
+	clear; echo -ne "${eng[$rand]}\t"; sleep 5s; echo "${rus[$rand]}"; read -s go
+	done;
+}
+
+russian (){
+	go=c
+	while [[ $go -eq c ]] || exit; do
+	rand=$((RANDOM%rcount))
+	clear; echo -ne "${rus[$rand]}\t"; sleep 5s; echo "${eng[$rand]}"; read -s go
+	done;
+}
+
+
+case $lang in
+	e|E) english ;;
+	r|R) russian ;;
+	*)  exit ;;
+esac
+
+exit 0

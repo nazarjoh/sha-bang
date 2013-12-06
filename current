@@ -1,0 +1,27 @@
+#!/bin/bash
+
+exch() {
+local temp=${names[$1]}
+names[$1]=${names[$2]}
+names[$2]=$temp
+return
+}
+
+names=( $(cat /home/korenfor/exp/names) )
+
+cmprs=${#names[@]}
+
+while [[ $cmprs -gt 0 ]]; do
+
+index=0
+while [[ $index -lt $cmprs ]];do
+	
+		if [ ${#names[$index]} -gt ${#names[$(expr "$index" \+ 1)]} ]
+		then exch $index $(expr "$index" \+ 1)
+		fi
+	let "index += 1"
+	done
+let "cmprs -=1"
+done
+
+echo ${names[@]}
