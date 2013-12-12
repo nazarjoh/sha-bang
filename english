@@ -19,7 +19,7 @@ english (){
 	go=c
 	while [[ $go -eq c ]] || exit; do
 	rand=$((RANDOM%ecount))
-	clear; echo -ne "${eng[$rand]}\t"; sleep 5s; echo "${rus[$rand]}"; read -s go
+	clear; echo -e "\n\n\n\n\n\n\n\n\n\n\n\n \t\t\t\t\t" ;echo -ne "${eng[$rand]}\t"; sleep 5s; echo "${rus[$rand]}"; read -s go
 	done;
 }
 
