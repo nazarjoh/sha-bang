@@ -159,10 +159,10 @@ spring		возникать_пружина_весна
 topic_subject		предмет_для_обсуждения
 rake		грабли
 affect		влиять
-isnippet		отрывок
+snippet		отрывок
 venue		место_встречи
 certitude		уверенность
-adjacent		смежный
+adjacent_contiguous		смежный
 distinguish		различать
 opinionated		самоуверенный
 con		зубрила_обманывать
@@ -172,7 +172,7 @@ woe		беда_горе
 moniker		кличка_позывной
 preliminary		предварительный
 irritating		раздражающий
-hideously		отвратительный
+hideous		отвратительный
 stunt		трюк
 rid		освобождать_избавляться
 for_good		навсегда
@@ -241,3 +241,8 @@ cope		справиться_сладить
 affluent		богатый_изобильный
 wage		зарплата
 warehouse		склад
+prompt		быстрый_побуждать
+whether		ли_который
+pesky		надоедливый
+insidious		коварный
+tan		загар
